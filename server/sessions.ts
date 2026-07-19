@@ -38,25 +38,54 @@ function createRedisStore(client: Redis): SessionStore {
   };
 }
 
+function normalizeRedisUrl(url: string): string {
+  // Upstash requires TLS — upgrade redis:// to rediss:// when pointing at Upstash
+  if (url.startsWith("redis://") && url.includes("upstash.io")) {
+    return "rediss://" + url.slice("redis://".length);
+  }
+  return url;
+}
+
 let sessions: SessionStore = createMemoryStore();
 let redisClient: Redis | null = null;
 
 export async function connectRedis(): Promise<void> {
-  const redisUrl = process.env.REDIS_URL;
+  const rawUrl = process.env.REDIS_URL;
 
-  if (!redisUrl) {
+  if (!rawUrl) {
     console.warn("REDIS_URL not set — using in-memory sessions (lost on restart)");
     sessions = createMemoryStore();
     return;
   }
 
-  redisClient = new Redis(redisUrl, {
-    maxRetriesPerRequest: 3,
-  });
+  const redisUrl = normalizeRedisUrl(rawUrl);
 
-  await redisClient.ping();
-  sessions = createRedisStore(redisClient);
-  console.log("Connected to Redis for sessions");
+  try {
+    redisClient = new Redis(redisUrl, {
+      maxRetriesPerRequest: 3,
+      connectTimeout: 10000,
+      tls: redisUrl.startsWith("rediss://") ? {} : undefined,
+    });
+
+    redisClient.on("error", (err) => {
+      console.error("Redis client error:", err.message);
+    });
+
+    await redisClient.ping();
+    sessions = createRedisStore(redisClient);
+    console.log("Connected to Redis for sessions");
+  } catch (err) {
+    console.error("Redis unavailable — falling back to in-memory sessions:", err);
+    if (redisClient) {
+      try {
+        redisClient.disconnect();
+      } catch {
+        // ignore
+      }
+      redisClient = null;
+    }
+    sessions = createMemoryStore();
+  }
 }
 
 export function getSessions(): SessionStore {
