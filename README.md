@@ -33,11 +33,11 @@ The missing layer between tutorials and real productivity.
 
 ## What’s inside
 
-- **Typing Arena** — 10 Go + 10 Python levels with WPM goals and accuracy requirements  
-- **Syntax Academy** — compare concepts module-by-module; load snippets as custom drills; diagnostic quiz  
-- **Stats & feedback** — raw/net WPM, accuracy, backspaces, time, and performance tips  
-- **Accounts & leaderboard** — register/login, save scores, compete on net WPM  
-- **Ergonomics panel** — posture guidance and daily warm-ups  
+- **Typing Arena** : 10 Go + 10 Python levels with WPM goals and accuracy requirements  
+- **Syntax Academy** : compare concepts module-by-module; load snippets as custom drills; diagnostic quiz  
+- **Stats & feedback** : raw/net WPM, accuracy, backspaces, time, and performance tips  
+- **Accounts & leaderboard** : register/login, save scores, compete on net WPM  
+- **Ergonomics panel** : posture guidance and daily warm-ups  
 - **Light / dark** workspace themes  
 
 ---
@@ -144,4 +144,6 @@ Keep data permanent by separating hosting from storage:
 
 ## License
 
-Personal / portfolio project — use and adapt as you like.
+Personal / portfolio project  
+
+use and adapt as you like.
