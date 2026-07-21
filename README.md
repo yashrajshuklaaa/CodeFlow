@@ -1,6 +1,6 @@
 # CodeFlow
 
-**Learn to type real code — not random words.**
+**Learn to type real code, not random words.**
 
 CodeFlow is a touch-typing practice app built for programmers. Instead of drilling `asdf jkl;`, you type real **Go** and **Python** snippets across **10 progressive levels**, so your fingers learn the syntax you actually use every day.
 
@@ -26,7 +26,8 @@ Switch between languages anytime, climb a WPM ladder that starts at **22 WPM** a
 | Guessing if you’re actually improving | Live WPM, accuracy gates (95%+), XP, streaks, and a leaderboard |
 | Bad posture / hand strain while grinding | Ergonomics tips and warm-up drills built into the workspace |
 
-**In short:** CodeFlow helps you write code faster and more accurately by training the *physical* skill of typing programming languages — the missing layer between tutorials and real productivity.
+**In short:** CodeFlow helps you write code faster and more accurately by training the *physical* skill of typing programming languages 
+The missing layer between tutorials and real productivity.
 
 ---
 
